@@ -16,6 +16,7 @@ ns = api.namespace('predict',
      description='Popularidad')
 
 parser = ns.parser()
+
 parser.add_argument(
     'duration_ms', 
     type=int, 
@@ -43,9 +44,7 @@ class PopularidadApi(Resource):
     def get(self):
         args = parser.parse_args()
         duration_ms = args['duration_ms']
-        explicit = args['explicit']
-        
-        from model_deployment.m02_model_deployment import predict_popu
+        explicit = args['explicit']        
 
         resultado = predict_popu(duration_ms, explicit)
         return {
